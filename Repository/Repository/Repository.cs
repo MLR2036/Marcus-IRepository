@@ -19,19 +19,30 @@ namespace Repository
         {
             return books;
         }
+        
         public void Delete(IComparable id)
-        {
-            throw new NotImplementedException();
+        {           
+            books.RemoveAll(MatchId(id));
         }
 
         public void Save(T item)
         {
-            throw new NotImplementedException();
-        }       
+            if (item.Id == null)
+            {
+                throw new ArgumentNullException(nameof(item));
+            }            
+            Delete(item.Id); //ensure no duplicates
+            books.Add(item);
+        }
 
-        T IRepository<T>.FindById(IComparable id)
+        public T FindById(IComparable id)
         {
-            throw new NotImplementedException();
+            return books.Find(MatchId(id));
+        }
+
+        private Predicate<T> MatchId(IComparable id)
+        {
+            return match => match.Id.Equals(id);
         }
     }
 }

@@ -38,6 +38,7 @@
   <ItemGroup>
     <Compile Include="Interface\IRepository.cs" />
     <Compile Include="Interface\IStoreable.cs" />
+    <Compile Include="Programe.cs" />
     <Compile Include="Repository\Book.cs" />
     <Compile Include="Repository\Repository.cs" />
   </ItemGroup>
