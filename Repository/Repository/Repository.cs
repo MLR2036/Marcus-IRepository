@@ -27,12 +27,20 @@ namespace Repository
 
         public void Save(T item)
         {
-            if (item.Id == null)
+            if (item == null || item.Id == null)
             {
                 throw new ArgumentNullException(nameof(item));
-            }            
-            Delete(item.Id); //ensure no duplicates
-            books.Add(item);
+            }
+            
+            var book = FindById(item.Id);
+            if (book == null)
+            {
+                books.Add(item);
+            }
+            else
+            {
+                throw new ArgumentException("Book Id already exists");
+            }
         }
 
         public T FindById(IComparable id)

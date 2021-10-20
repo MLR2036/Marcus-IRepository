@@ -13,7 +13,7 @@ namespace Repository
 
         public string Title { get; set; }
 
-        public string aurthor { get; set; }       
+        public string Author { get; set; }       
 
     }
 }
