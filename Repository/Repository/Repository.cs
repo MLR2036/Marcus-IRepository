@@ -9,20 +9,20 @@ namespace Repository
 {
     public class Repository<T> : IRepository<T> where T : IStoreable
     {
-        private List<T> books;
+        private List<T> items;
 
         public Repository()
         {
-            books = new List<T>();
+            items = new List<T>();
         }
         public IEnumerable<T> All()
         {
-            return books;
+            return items;
         }
         
         public void Delete(IComparable id)
         {           
-            books.RemoveAll(MatchId(id));
+            items.RemoveAll(MatchId(id));
         }
 
         public void Save(T item)
@@ -35,7 +35,7 @@ namespace Repository
             var book = FindById(item.Id);
             if (book == null)
             {
-                books.Add(item);
+                items.Add(item);
             }
             else
             {
@@ -45,7 +45,7 @@ namespace Repository
 
         public T FindById(IComparable id)
         {
-            return books.Find(MatchId(id));
+            return items.Find(MatchId(id));
         }
 
         private Predicate<T> MatchId(IComparable id)
